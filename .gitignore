@@ -1,0 +1,7 @@
+node_modules/
+_test/
+_work/
+stills/
+out/
+*.wav
+.DS_Store

@@ -1,0 +1,8 @@
+{
+  "_note": "One segment per sentence or beat. cap = caption text (real spelling). say = what the TTS reads (phonetic fixes, optional). cap_en = second-language captions (optional). gap = silence before the segment in seconds (~0.6 at scene changes).",
+  "segments": [
+    { "id": "s01", "cap": "Which one is best? People ask me all the time.", "gap": 0.25 },
+    { "id": "s02", "cap": "Wrong question: they do different things.", "gap": 0.4 },
+    { "id": "s03", "cap": "Try it today and tell me in the comments.", "gap": 0.6 }
+  ]
+}

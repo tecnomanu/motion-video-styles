@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>scenes</title>
+<style>
+/* Brand tokens: the agent fills these from brand.json, then applies the chosen style (references/styles/<style>.md). */
+@font-face{font-family:"Inter";src:url(node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2) format("woff2");font-weight:100 900}
+:root{--bg:#F6F4EF;--ink:#17171A;--accent:#7048E8;--accent2:#14995E;--card:#fff}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100vw;height:100vh;overflow:hidden}
+#stage{position:relative;width:100vw;height:100vh;overflow:hidden;background:var(--bg);color:var(--ink);font-family:Inter,sans-serif}
+.abs{position:absolute}
+.title{position:absolute;left:8%;right:8%;top:16%;font:800 9vw/1.02 Inter;letter-spacing:-.03em}
+.title em{font-style:normal;color:var(--accent)}
+.cards{position:absolute;left:0;right:0;top:40%;display:flex;justify-content:center;gap:2.4vw}
+.card{width:27vw;height:36vw;background:var(--card);border-radius:3vw;box-shadow:0 40px 90px rgba(30,30,60,.13);display:grid;place-items:center;font:800 4.4vw/1 Inter}
+#cap{position:absolute;left:6%;right:6%;top:78%;text-align:center;font:800 5.4vw/1.25 Inter;letter-spacing:-.015em}
+#cap .w{display:inline-block;color:rgba(23,23,26,.22);padding:0 .12em}
+#cap .w.on{color:var(--ink)}
+#cap .w.act{color:var(--accent)}
+/* horizontal (16:9): move captions lower and use vh units for type */
+@media (min-aspect-ratio:1/1){.title{font-size:9vh;top:12%}.cards{top:36%}.card{width:22vh;height:30vh;font-size:4vh}#cap{top:84%;font-size:5vh}}
+</style></head><body>
+<div id="stage">
+  <h1 class="title" id="t1">Which one is <em>best</em>?</h1>
+  <div class="cards"><div class="card" id="c1">A</div><div class="card" id="c2">B</div><div class="card" id="c3">C</div></div>
+  <h1 class="title" id="t2">Wrong <em>question</em>.</h1>
+  <h1 class="title" id="t3" style="text-align:center;top:35%">Try it <em>today</em>.</h1>
+  <div id="cap"></div>
+</div>
+<script src="node_modules/gsap/dist/gsap.min.js"></script>
+<script src="timings.js"></script>
+<script>
+// Scenes are written against spoken words: W('s01', 'best') is the time that word is said.
+window.STYLE = {
+  capMax: 4,
+  build(tl, h) {
+    const { W, st, E } = h;
+    ['#t2', '#t3'].forEach(s => tl.set(s, { autoAlpha: 0 }, 0));
+    h.rise('#t1', .05, { y: 60, d: .6 });
+    ['#c1', '#c2', '#c3'].forEach((c, i) => tl.fromTo(c, { autoAlpha: 0, y: 300, rotation: [-12, 0, 12][i] }, { autoAlpha: 1, y: 0, rotation: [-4, 0, 4][i], duration: .6, ease: 'back.out(1.4)' }, .4 + i * .2));
+    tl.to('#t1', { autoAlpha: 0, y: -40, duration: .3 }, st('s02') - .2);
+    h.rise('#t2', st('s02'), { y: 40, d: .45 });
+    tl.to('.card', { autoAlpha: 0, y: 200, duration: .4, stagger: .06, ease: E.in }, st('s03') - .4);
+    tl.to('#t2', { autoAlpha: 0, duration: .25 }, st('s03') - .3);
+    h.pop('#t3', st('s03'), { s: .7, y: 0 });
+  },
+  frame(t) { document.querySelectorAll('.card').forEach((c, i) => c.style.translate = `0 ${Math.sin(t * 1.6 + i) * 8}px`); },
+};
+</script>
+<script src="common.js"></script>
+</body></html>
