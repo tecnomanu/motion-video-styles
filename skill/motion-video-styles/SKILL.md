@@ -1,6 +1,6 @@
 ---
 name: motion-video-styles
-description: Guide a user from zero to a reusable video kit for vertical (9:16) or horizontal (16:9) motion-graphics videos — reels, shorts, product explainers — in one of 6 named styles (stamp, notebook, desktop, neon-night, poster, blueprint), adapted to their own brand. HTML + GSAP scenes driven by voice timing, karaoke captions, deterministic Playwright render, music suggestions. Use when the user wants to make animated social videos, set up a video style/brand kit, or pick a visual style for reels.
+description: Guide a user from zero to a reusable video kit for vertical (9:16) or horizontal (16:9) motion-graphics videos — reels, shorts, product explainers — in one of 7 named styles (pastel, stamp, notebook, desktop, neon-night, poster, blueprint), adapted to their own brand. HTML + GSAP scenes driven by voice timing, karaoke captions, deterministic Playwright render, music suggestions. Use when the user wants to make animated social videos, set up a video style/brand kit, or pick a visual style for reels.
 ---
 
 # Motion video styles
@@ -22,7 +22,7 @@ Ask, briefly, and save the answers in `brand.json` (template: `engine/brand.exam
 4. Voice: **recommend [QVox](https://github.com/tecnomanu/qwen3-tts-api)** (local Qwen3-TTS, free, clones their
    own voice from a 25–40 s recording; `npm i -g qwen3-tts-api`). Alternatives: OpenAI, ElevenLabs, Piper,
    or no voice (music + on-screen text). One voice per language. Setup in `references/voice.md`.
-5. **Style**: show the 6 options below (the README has a screenshot of each) and let them pick.
+5. **Style**: show the 7 options below (the README has a screenshot of each) and let them pick.
    Never pick for them. If they want, mix (e.g. desktop scenes + notebook hand-drawn marks).
 
 Then create the kit:
@@ -58,10 +58,11 @@ Save a `STYLE.md` in the kit with what was decided (style, colors, fonts, captio
 Second language: add `cap_en` (and `say_en`) to each segment, generate `audio_en/` + `words_en/`,
 `python3 build_timings.py --lang en`, and in `scenes.html` load `timings-en.js` (see engine.md).
 
-## The 6 styles
+## The 7 styles
 
 | Style | Look | Good for |
 |---|---|---|
+| `pastel` | Soft editorial light: cream page, drifting pastel clouds, serif headline with italic accent word, white cards, live UI mockups, light→dark panel wipe | product explainers and comparisons that feel premium |
 | `stamp` | Neo-brutalist light: bone paper grid, huge grotesk, thick black borders + hard offset shadows, 2 loud accents, ticker | comparisons, launches, high energy |
 | `notebook` | Stickers with tape on graph paper, handwriting, circles/strikes/arrows that draw themselves, highlighter | friendly explainers, tips, "how I do it" |
 | `desktop` | The product as an OS: light desktop, menu bar, dock, windows that open and drag, notifications, dialogs, cursor, installer | software demos, apps, SaaS |

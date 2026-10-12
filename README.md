@@ -1,23 +1,24 @@
 # motion-video-styles
 
 An agent skill to make **animated vertical (9:16) or horizontal (16:9) videos** — reels, shorts, product
-explainers — in **6 ready-made styles**, adapted to any brand. No camera and no video editor: scenes are
+explainers — in **7 ready-made styles**, adapted to any brand. No camera and no video editor: scenes are
 HTML animated with GSAP, every animation is cued to a spoken word, captions are karaoke-style, and the
 render is deterministic (Playwright frame by frame → ffmpeg).
 
 The skill walks the user from zero: brand, format, voice, style → a personal video kit folder → one
 video after another.
 
-## Three of the styles in motion
+## Four of the styles in motion
 
-| stamp | neon-night | blueprint |
-|:---:|:---:|:---:|
-| <img src="previews/stamp.gif" width="250"> | <img src="previews/neon-night.gif" width="250"> | <img src="previews/blueprint.gif" width="250"> |
+| pastel | stamp | neon-night | blueprint |
+|:---:|:---:|:---:|:---:|
+| <img src="previews/pastel.gif" width="200"> | <img src="previews/stamp.gif" width="200"> | <img src="previews/neon-night.gif" width="200"> | <img src="previews/blueprint.gif" width="200"> |
 
-## The 6 styles
+## The 7 styles
 
 | Style | Preview |
 |---|---|
+| [**pastel**](skill/motion-video-styles/references/styles/pastel.md) · soft editorial light: cream page, drifting pastel clouds, serif headline with an italic accent, white cards, live UI mockups, glyph portraits | <img src="previews/pastel.jpg" width="520"> |
 | [**stamp**](skill/motion-video-styles/references/styles/stamp.md) · neo-brutalist light: bone paper, huge grotesk, black borders, hard shadows, two loud accents | <img src="previews/stamp.jpg" width="520"> |
 | [**notebook**](skill/motion-video-styles/references/styles/notebook.md) · stickers with tape, handwriting, marks that draw themselves, highlighter | <img src="previews/notebook.jpg" width="520"> |
 | [**desktop**](skill/motion-video-styles/references/styles/desktop.md) · the product as an OS: windows, dock, notifications, dialogs, cursor, installer | <img src="previews/desktop.jpg" width="520"> |
@@ -25,7 +26,7 @@ video after another.
 | [**poster**](skill/motion-video-styles/references/styles/poster.md) · full-bleed color that switches per scene, masked type, Bauhaus shapes | <img src="previews/poster.jpg" width="520"> |
 | [**blueprint**](skill/motion-video-styles/references/styles/blueprint.md) · technical drawing: blue grid, line art, dimensions, schematics, stamp | <img src="previews/blueprint.jpg" width="520"> |
 
-Previews come from one demo script rendered in every style (fictional data).
+Previews come from demo videos about an open-source tool (fictional data); `pastel` is from a full 90 s video.
 
 ## Install the skill
 
