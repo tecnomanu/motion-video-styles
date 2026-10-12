@@ -8,7 +8,7 @@
   "fonts": { "display": "Anton", "body": "Inter", "mono": "JetBrains Mono" },
   "logo": "assets/logo.png",
   "mascot": null,
-  "voice": { "provider": "openai | elevenlabs | local-clone | piper | none", "voice": "", "notes": "phonetic fixes that worked" },
+  "voice": { "provider": "qvox", "url": "http://127.0.0.1:5111", "clone": "my-voice", "language": "English", "temperature": 0.4, "seed": 1234, "notes": "phonetic fixes that worked" },
   "music": { "default": "", "level_lufs": -35 },
   "tone": "first person, concrete pain → twist → hook → question",
   "cta": "Tell me in the comments"

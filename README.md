@@ -39,8 +39,10 @@ cp -R motion-video-styles/skill/motion-video-styles ~/.claude/skills/
 Then ask your agent: *"make me a reel kit with the motion-video-styles skill"*. It will ask for your
 brand, format, voice and style, create `my-video-kit/` and guide each video.
 
-**Requirements:** Node 20+, ffmpeg, Python 3 with `faster-whisper` (local word timestamps), and any TTS
-(OpenAI, ElevenLabs, a local voice clone, Piper… or none).
+**Requirements:** Node 20+, ffmpeg, Python 3 with `faster-whisper` (local word timestamps), and a TTS.
+Recommended voice: [**QVox (qwen3-tts-api)**](https://github.com/tecnomanu/qwen3-tts-api) — local Qwen3-TTS
+with cloneable voices, free; OpenAI, ElevenLabs or Piper also work. Captions are burned in, karaoke-style,
+synced to the voice (`.srt` export included).
 
 ```bash
 cp -R skill/motion-video-styles/engine my-video-kit && cd my-video-kit
@@ -52,11 +54,12 @@ npm i && npx playwright install chromium && pip install faster-whisper
 ```
 skill/motion-video-styles/
 ├── SKILL.md                 workflow the agent follows (onboarding → kit → each video)
-├── engine/                  the kit template: common.js, render.mjs, build_timings.py, transcribe.py, make.sh, scenes.html
+├── engine/                  the kit template: tts.py, transcribe.py, build_timings.py, scenes.html, common.js, render.mjs, make.sh, make_srt.py
 └── references/
     ├── styles/<style>.md    tokens, components, motion signature, scene recipes per style
     ├── engine.md            scene API (cues, helpers, captions, languages, horizontal)
-    ├── voice.md             TTS per segment, cleanup, QA
+    ├── voice.md             QVox setup + other TTS, phonetic fixes, cleanup, QA
+    ├── captions.md          how captions are built, styled per style, sized, positioned, exported to .srt
     └── music.md             where to find beds (Pixabay Music) and how loud to mix them
 ```
 

@@ -19,7 +19,9 @@ Ask, briefly, and save the answers in `brand.json` (template: `engine/brand.exam
 1. Brand name, handle, logo file (PNG/SVG), and 2–4 brand colors (or offer to derive them).
 2. Format: **vertical 1080×1920** (reels/shorts/TikTok) or **horizontal 1920×1080** (YouTube) — or both.
 3. Languages (one voice track per language; never captions-only translations if a voice is possible).
-4. Voice: their TTS (OpenAI, ElevenLabs, a local voice clone, Piper…) or no voice (music + text).
+4. Voice: **recommend [QVox](https://github.com/tecnomanu/qwen3-tts-api)** (local Qwen3-TTS, free, clones their
+   own voice from a 25–40 s recording; `npm i -g qwen3-tts-api`). Alternatives: OpenAI, ElevenLabs, Piper,
+   or no voice (music + on-screen text). One voice per language. Setup in `references/voice.md`.
 5. **Style**: show the 6 options below (the README has a screenshot of each) and let them pick.
    Never pick for them. If they want, mix (e.g. desktop scenes + notebook hand-drawn marks).
 
@@ -40,9 +42,9 @@ Save a `STYLE.md` in the kit with what was decided (style, colors, fonts, captio
 1. **Script** → `script.json`: one segment per sentence/beat (`id`, `cap`, optional `say` with phonetic
    fixes for the TTS, `gap` ~0.6 s at scene changes). Structure that works: hook question → twist
    ("wrong question") → one block per idea → hard data → recap → CTA. Keep it affirmative. 20–60 s.
-2. **Voice** → `audio/<id>.wav` per segment (see `references/voice.md`). Then
+2. **Voice** → `python3 tts.py` (one wav per segment, QVox by default; `references/voice.md`). Then
    `python3 transcribe.py audio/<id>.wav words/<id>.json <lang>` for each segment. Read the transcript:
-   if a word came out wrong, rewrite `say` (phonetic spelling) or change the seed and regenerate.
+   if a word came out wrong, rewrite `say` (phonetic spelling) or change `SEED=` and regenerate that id.
 3. **Timings** → `python3 build_timings.py` (writes `timings.js` and `voice.wav`).
 4. **Scenes** → write `STYLE.build(tl, h)` in `scenes.html`. Cue everything with `h.W('s02','question')`.
    Recipes per style in `references/styles/`, engine API in `references/engine.md`.
@@ -50,6 +52,8 @@ Save a `STYLE.md` in the kit with what was decided (style, colors, fonts, captio
 6. **Render** → `MUSIC=path/to/bed.mp3 bash make.sh out/video-en.mp4 [--lang en] [--w 1920 --h 1080]`.
 7. **Cover** → `node render.mjs --stills=<hook time> --nocap --prefix=cover-` (the first frame is
    often empty, so platforms need an explicit cover).
+8. **Subtitles file** (optional) → `python3 make_srt.py timings.js out/video.srt` for platforms that show
+   their own subtitles, only with a `--nocap` render.
 
 Second language: add `cap_en` (and `say_en`) to each segment, generate `audio_en/` + `words_en/`,
 `python3 build_timings.py --lang en`, and in `scenes.html` load `timings-en.js` (see engine.md).
@@ -64,6 +68,12 @@ Second language: add `cap_en` (and `say_en`) to each segment, generate `audio_en
 | `neon-night` | Dark: near-black, one neon accent with glow, condensed display type, mono labels, 3D card flips, glitch | brand identity in a dark feed, tech |
 | `poster` | Full-bleed saturated color that switches per scene, display type rising from masks, Bauhaus shapes | strong hooks, breaking feed monotony |
 | `blueprint` | Technical drawing: blue grid, everything drawn in white lines, dimensions, notes, schematics, approval stamp | architecture, "how it works inside" |
+
+## Captions
+
+Burned-in karaoke captions are on by default (most viewers watch muted): text from `cap`, timing from the
+voice, active word highlighted, look defined by the style, kept above the bottom platform UI. Everything
+about them — chunking, classes, per-style look, sizes, positions, .srt export — in `references/captions.md`.
 
 ## Music
 
